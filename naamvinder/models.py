@@ -2,12 +2,6 @@ from django.db import models
 from solo.models import SingletonModel
 from django.contrib.postgres.fields import ArrayField
 
-deelnemers = [
-    'Robin',
-    'Annick',
-    'Hans'
-]
-
 # Naam veur ein van de deelnemers
 class Naam(models.Model):
     """

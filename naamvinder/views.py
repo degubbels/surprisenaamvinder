@@ -9,13 +9,6 @@ from naamvinder.models import Naam, Config
 from django.core.mail import send_mail
 import copy
 
-class SelfDestruction:
-    destroyed = False
-
-    @classmethod
-    def destroy(self):
-        self.destroyed = True
-
 def sendResultEmail(naam):
     
     send_mail(
