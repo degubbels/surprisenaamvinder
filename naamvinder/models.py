@@ -24,7 +24,8 @@ class Config(SingletonModel):
     # List of known deelnemers
     deelnemers = ArrayField(
         models.CharField(max_length=40),
-        size=7
+        size=7,
+        default=[]
     )
 
     # Has self-destuction been carried out
