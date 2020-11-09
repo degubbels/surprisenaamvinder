@@ -19,7 +19,6 @@ from django.urls import path, re_path
 from naamvinder.views import *
 
 urlpatterns = [
-    path('nos/', frontend, name='frontend'),
     path('api/naam/', NaamAPI.as_view(), name='api-naam'),
     path('api/naamcount/', EnteredCountAPI.as_view(), name='api-entered-count'),
     path('admin/', admin.site.urls),
