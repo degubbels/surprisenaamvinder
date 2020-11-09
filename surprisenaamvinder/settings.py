@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    #'django.contrib.staticfiles',
+    'django.contrib.staticfiles',
     'rest_framework',                       # Rest API
     'corsheaders',                          # Allow CORS headers
     'solo',                                 # Singelton models
@@ -127,8 +127,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-# STATIC_URL = '/frontend/dist/'
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_URL = 'dist/'
+STATIC_ROOT = os.path.join(BASE_DIR, '/frontend/')
 
 # Email settings
 EMAIL_HOST = "smtp.gmail.com"
