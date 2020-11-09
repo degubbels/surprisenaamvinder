@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'surprisenaamvinder.wsgi.application'
 # CORS headers
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8080",
-    "http://degu.info"
+    "http://surprisenaamvinder.degu.info"
 ]
 
 
