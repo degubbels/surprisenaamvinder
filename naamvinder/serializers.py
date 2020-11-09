@@ -1,6 +1,5 @@
 from rest_framework import serializers
-from naamvinder.models import Naam
-from naamvinder.models import deelnemers
+from naamvinder.models import Naam, Config
 
 
 # Serializer for Naam
@@ -16,9 +15,9 @@ class NaamSerializer(serializers.ModelSerializer):
         """
 
         # Ensure the name is known
-        if not(data['naam'] in deelnemers):
+        if not(data['naam'] in Config.get_solo().deelnemers):
             msg = "<naam_onbekend> hmm, " + data['naam'] + " staat niet in het lijstje. " \
-                "De volgend namen zijn bekend: " + str(deelnemers)
+                "De volgend namen zijn bekend: " + str(Config.get_solo().deelnemers)
             raise serializers.ValidationError(msg)
 
         # Ensure the name has not been entered before

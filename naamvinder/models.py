@@ -35,3 +35,7 @@ class Config(SingletonModel):
 
     # Has self-destuction been carried out
     selfDestroyed = models.BooleanField(default=False)
+
+    def destroy(self):
+        self.selfDestroyed = True
+        self.save()

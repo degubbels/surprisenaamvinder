@@ -23,8 +23,8 @@ def sendResultEmail(naam):
         "Hey pap,\n\n" \
             "Iedereen heeft een naam ingevuld en er is er een over gebleven, jij hebt " + str(naam) + ".\n\n" \
             "Succes!",
-        'dev@degu.info',
-        ['dennis@degu.info'],
+        'surprisenaamvinder@gmail.com',
+        [Config.get_solo().destinationEmail],
         fail_silently=False
     )
 
@@ -35,7 +35,7 @@ class NaamAPI(APIView):
 
     def post(self, request):
 
-        if SelfDestruction.destroyed:
+        if Config.get_solo().selfDestroyed:
             return
 
         serializer = NaamSerializer(data=request.data)
@@ -47,7 +47,7 @@ class NaamAPI(APIView):
             # Send the last name to hans
             if Naam.objects.all().count() >= 6:
 
-                names = copy.deepcopy(deelnemers)
+                names = copy.deepcopy(Config.get_solo().deelnemers)
                 
                 # Figure out the missing name
                 for naam in [n.naam for n in Naam.objects.all()]:
@@ -58,7 +58,7 @@ class NaamAPI(APIView):
                 else:
                     sendResultEmail(names[0])
                     Naam.objects.all().delete()
-                    SelfDestruction.destroy()
+                    Config.get_solo().destroy()
                     return Response("Email naar Hans verstuurd, zelfvernietiging in 5 seconden.", status=status.HTTP_202_ACCEPTED)
 
             return Response(serializer.data, status=status.HTTP_200_OK)
@@ -73,7 +73,7 @@ class EnteredCountAPI(APIView):
 
     def get(self, request):
 
-        if SelfDestruction.destroyed:
+        if Config.get_solo().selfDestroyed:
             return
 
         return Response(Naam.objects.all().count())

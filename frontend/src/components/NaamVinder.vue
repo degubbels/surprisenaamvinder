@@ -105,6 +105,8 @@ export default class NaamVinder extends Vue {
 
             })
             .catch(error => {
+                this.error = true;
+                this.errorMsg = this.unknownErrorMsg;
                 console.error(error);
             });
     }
